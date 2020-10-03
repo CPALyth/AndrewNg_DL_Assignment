@@ -191,7 +191,7 @@ def load_2D_dataset(is_plot=True):
     test_X = data['Xval'].T
     test_Y = data['yval'].T
     if is_plot:
-        plt.scatter(train_X[0, :], train_X[1, :], c=train_Y, s=40, cmap=plt.cm.Spectral);
+        plt.scatter(train_X[0, :], train_X[1, :], c=np.squeeze(train_Y), s=40, cmap=plt.cm.Spectral);
     
     return train_X, train_Y, test_X, test_Y
 
@@ -226,6 +226,7 @@ def predict(X, y, parameters):
     return p
 
 def plot_decision_boundary(model, X, y):
+    y = np.squeeze(y)
     # Set min and max values and give it some padding
     x_min, x_max = X[0, :].min() - 1, X[0, :].max() + 1
     y_min, y_max = X[1, :].min() - 1, X[1, :].max() + 1
